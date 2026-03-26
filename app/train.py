@@ -1,10 +1,13 @@
 import os
+from dotenv import load_dotenv
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 import mlflow
 import mlflow.sklearn
+
+load_dotenv()
 
 MLFLOW_TRACKING_URI = os.environ.get("MLFLOW_TRACKING_URI")
 MLFLOW_TRACKING_USERNAME = os.environ.get("MLFLOW_TRACKING_USERNAME")
@@ -26,13 +29,14 @@ X_train, X_test, y_train, y_test = train_test_split(
 )
 
 with mlflow.start_run() as run:
-    model = RandomForestClassifier(n_estimators=100, random_state=42)
+    model = RandomForestClassifier(n_estimators=150, max_depth=10, random_state=42)
     model.fit(X_train, y_train)
 
     preds = model.predict(X_test)
     accuracy = accuracy_score(y_test, preds)
 
-    mlflow.log_param("n_estimators", 100)
+    mlflow.log_param("n_estimators", 150)
+    mlflow.log_param("max_depth", 10)
     mlflow.log_param("random_state", 42)
     mlflow.log_metric("accuracy", accuracy)
     mlflow.sklearn.log_model(model, "model")
