@@ -1,0 +1,4 @@
+[core]
+    remote = dagshub
+[remote "dagshub"]
+    url = https://dagshub.com/Tasneem-Mohammed/mlops-assignment-5.dvc
