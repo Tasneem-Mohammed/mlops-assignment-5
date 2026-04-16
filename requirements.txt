@@ -1,6 +1,4 @@
 scikit-learn
-mlflow
 pandas
 numpy
-dvc[http]
 requests
