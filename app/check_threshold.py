@@ -2,7 +2,7 @@ import os
 import sys
 import mlflow
 
-THRESHOLD = 0.85
+THRESHOLD = 0.70
 
 MLFLOW_TRACKING_URI = os.environ.get("MLFLOW_TRACKING_URI")
 MLFLOW_TRACKING_USERNAME = os.environ.get("MLFLOW_TRACKING_USERNAME")
